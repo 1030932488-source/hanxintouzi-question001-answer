@@ -1,18 +1,18 @@
-# Hanxin Investment Questions Answers
+# 瀚鑫投资笔试题答案
 
-This repository contains the answers for the recruiting questions.
+本仓库包含笔试题的答案。
 
-## Structure
+## 目录结构
 
-- `Question1.md`: Answer to Question 1 (Reverse Symmetric Matrix Algorithm).
-- `Question2.md`: Answer to Question 2 (FFT Regex Matching).
-- `branch1`: Contains the Backend Refactoring (Question 3).
-- `branch2`: Contains the Data Scripts (Question 4).
+- `Question1.md`: 题目1的答案（反向对称矩阵算法）。
+- `Question2.md`: 题目2的答案（FFT正则匹配）。
+- `branch1`: 包含题目3的后端重构代码。
+- `branch2`: 包含题目4的数据获取脚本。
 
-## Question 3 (Backend Refactoring)
+## 题目3（后端重构）
 
-Switch to `branch1` to view the refactored code.
+请切换到 `branch1` 分支查看重构后的代码。
 
-## Question 4 (Data Fetching)
+## 题目4（数据获取）
 
-Switch to `branch2` to view the data fetching logic.
+请切换到 `branch2` 分支查看数据获取逻辑。
