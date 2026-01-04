@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}仪表板 - 用户登录系统{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">欢迎回来，{{ user.username }}！</h2>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">用户信息</h5>
+                                <p><strong>用户名：</strong>{{ user.username }}</p>
+                                <p><strong>邮箱：</strong>{{ user.email }}</p>
+                                <p><strong>注册时间：</strong>{{ user.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                                {% if user.last_login %}
+                                <p><strong>最后登录：</strong>{{ user.last_login.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">快速操作</h5>
+                                <div class="d-grid gap-2">
+                                    <a href="{{ url_for('profile') }}" class="btn btn-outline-primary">查看个人资料</a>
+                                    <a href="{{ url_for('logout') }}" class="btn btn-outline-danger">登出</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
