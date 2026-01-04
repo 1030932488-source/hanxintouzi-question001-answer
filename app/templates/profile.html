@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}个人资料 - 用户登录系统{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">个人资料</h2>
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">基本信息</h5>
+                                <p><strong>用户名：</strong>{{ user.username }}</p>
+                                <p><strong>邮箱：</strong>{{ user.email }}</p>
+                                <p><strong>注册时间：</strong>{{ user.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                                {% if user.last_login %}
+                                <p><strong>最后登录：</strong>{{ user.last_login.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">统计信息</h5>
+                                <p><strong>总登录次数：</strong>{{ login_logs|length }}</p>
+                                <p><strong>当前会话：</strong>活跃</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">最近登录记录</h5>
+                        {% if login_logs %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>登录时间</th>
+                                        <th>登出时间</th>
+                                        <th>IP地址</th>
+                                        <th>会话时长</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for log in login_logs %}
+                                    <tr>
+                                        <td>{{ log.login_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                        <td>
+                                            {% if log.logout_time %}
+                                                {{ log.logout_time.strftime('%Y-%m-%d %H:%M:%S') }}
+                                            {% else %}
+                                                <span class="text-muted">未登出</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ log.ip_address or '未知' }}</td>
+                                        <td>
+                                            {% if log.logout_time %}
+                                                {{ ((log.logout_time - log.login_time).total_seconds() / 60) | round(1) }} 分钟
+                                            {% else %}
+                                                <span class="text-success">进行中</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <p class="text-muted">暂无登录记录</p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">返回仪表板</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
